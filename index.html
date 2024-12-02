@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>Hi, I’m Meller</title>
     <style>
-        /* General Styles */
+        /* General Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* Base Styles */
         body {
             font-family: 'Arial', sans-serif;
             display: flex;
@@ -22,15 +23,15 @@
             background: linear-gradient(135deg, #6a11cb, #2575fc);
             color: white;
             text-align: center;
+            padding: 1rem;
         }
 
-        /* Header Styles */
         header {
             margin-bottom: 2rem;
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
         }
@@ -40,10 +41,29 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Social Buttons */
+        /* Profile Picture */
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            border: 4px solid white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Social Links */
         .social-links {
             display: flex;
+            flex-wrap: wrap;
             gap: 1rem;
+            justify-content: center;
         }
 
         .social-links a {
@@ -56,6 +76,7 @@
             font-weight: bold;
             text-decoration: none;
             transition: all 0.3s ease;
+            width: fit-content;
         }
 
         .social-links a.linkedin:hover {
@@ -68,29 +89,53 @@
             color: white;
         }
 
-        /* Footer Styles */
+        /* Footer */
         footer {
-            margin-top: 3rem;
+            margin-top: 2rem;
             font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .social-links a {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .profile-pic {
+                width: 120px;
+                height: 120px;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Hi, I’m [Your Name]</h1>
+        <div class="profile-pic">
+            <img src="me.jpg" alt="Meller">
+        </div>
+        <h1>Hi, I’m Meller</h1>
         <p>Welcome to my portfolio! Let’s connect.</p>
     </header>
     <div class="social-links">
-        <a href="https://www.linkedin.com/in/your-profile" class="linkedin" target="_blank" aria-label="LinkedIn">
+        <a href="https://www.linkedin.com/in/kacpermeller" class="linkedin" target="_blank" aria-label="LinkedIn">
             LinkedIn
         </a>
-        <a href="https://www.instagram.com/your-profile" class="instagram" target="_blank" aria-label="Instagram">
+        <a href="https://www.instagram.com/caspermeller" class="instagram" target="_blank" aria-label="Instagram">
             Instagram
         </a>
     </div>
     <footer>
-        © 2024 [Your Name]. All rights reserved.
+        © 2024 Meller. All rights reserved.
     </footer>
 </body>
 </html>
