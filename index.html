@@ -1,7 +1,96 @@
 <!DOCTYPE html>
-<html>
-    <body>
-        <h1>Kasper Meller</h1>
-        <p><strong>Welcome to my portfolio</strong></p>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            text-align: center;
+        }
+
+        /* Header Styles */
+        header {
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Social Buttons */
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            background: white;
+            color: #333;
+            font-size: 1rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a.linkedin:hover {
+            background: #0073b1; /* LinkedIn Blue */
+            color: white;
+        }
+
+        .social-links a.instagram:hover {
+            background: #E1306C; /* Instagram Pink */
+            color: white;
+        }
+
+        /* Footer Styles */
+        footer {
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hi, I’m [Your Name]</h1>
+        <p>Welcome to my portfolio! Let’s connect.</p>
+    </header>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/your-profile" class="linkedin" target="_blank" aria-label="LinkedIn">
+            LinkedIn
+        </a>
+        <a href="https://www.instagram.com/your-profile" class="instagram" target="_blank" aria-label="Instagram">
+            Instagram
+        </a>
+    </div>
+    <footer>
+        © 2024 [Your Name]. All rights reserved.
+    </footer>
+</body>
 </html>
