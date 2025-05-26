@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kacper Meller</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/scrollreveal"></script>
   <style>
     html {
       scroll-behavior: smooth;
@@ -20,12 +19,15 @@
       overflow-x: hidden;
     }
 
-    section {
+    header, section {
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       padding: 4rem 2rem;
+      text-align: center;
+      background-attachment: fixed;
       opacity: 0;
       transition: opacity 1s ease-in-out;
     }
@@ -109,31 +111,6 @@
       color: #82cfff;
     }
 
-    .projects-section {
-      background: #1a1a1a;
-      color: #e0e0e0;
-      scroll-snap-align: start;
-    }
-
-    .projects-section img {
-      max-width: 100%;
-      max-height: 500px;
-      object-fit: cover;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      margin: 2rem 0;
-    }
-
-    .projects-section a {
-      color: #4fa3ff;
-      font-weight: bold;
-      text-decoration: underline;
-    }
-
-    .projects-section a:hover {
-      color: #82cfff;
-    }
-
     footer {
       background: #111;
       color: #aaa;
@@ -194,18 +171,6 @@
     </p>
   </section>
 
-  <section class="projects-section" id="projects">
-    <h2>Projects as a Test Developer</h2>
-    <img src="tomra-r2.jpg" alt="TOMRA R2">
-    <p>
-      I worked on the TOMRA R2 reverse vending machine, which features a modular system and continuous feed, making recycling fast and efficient. The R2 is designed to optimize operations with easy maintenance and troubleshooting, and it supports sustainability with its innovative design.
-    </p>
-    <img src="tomra-rollpac.jpg" alt="TOMRA RollPac">
-    <p>
-      Another project I contributed to is the TOMRA RollPac, designed for medium to large stores. It accepts cans, plastic bottles, and glass, and features a modular system with up to seven cabinets. The RollPac enhances efficiency and supports high-volume recycling.
-    </p>
-  </section>
-
   <footer>
     &copy; 2025 Kacper Meller
   </footer>
@@ -213,87 +178,57 @@
   <button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">Back to Top</button>
 
   <script>
-  gsap.registerPlugin(ScrollTrigger);
+    // ScrollReveal animations
+    ScrollReveal().reveal('header', {
+      duration: 1000,
+      origin: 'top',
+      distance: '30px',
+      easing: 'ease-in-out'
+    });
 
-  // Header animation
-  gsap.from("header", { duration: 1, opacity: 0, y: -50, ease: "power2.out" });
+    ScrollReveal().reveal('.soco-section h2', {
+      duration: 1000,
+      origin: 'left',
+      distance: '50px',
+      delay: 100
+    });
 
-  // SOCO section animations
-  gsap.from(".soco-section h2", {
-    duration: 1,
-    opacity: 0,
-    x: -50,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: ".soco-section h2",
-      start: "top 80%",
-      end: "bottom 20%",
-      scrub: true
-    }
-  });
+    ScrollReveal().reveal('.soco-section img', {
+      duration: 1000,
+      origin: 'bottom',
+      distance: '30px',
+      delay: 200
+    });
 
-  gsap.from(".soco-section img", {
-    duration: 1,
-    opacity: 0,
-    y: 50,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: ".soco-section img",
-      start: "top 80%",
-      end: "bottom 20%",
-      scrub: true
-    }
-  });
+    ScrollReveal().reveal('.soco-section p', {
+      duration: 800,
+      origin: 'bottom',
+      distance: '20px',
+      interval: 150,
+      delay: 300
+    });
 
-  gsap.from(".soco-section p", {
-    duration: 1,
-    opacity: 0,
-    y: 50,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: ".soco-section p",
-      start: "top 80%",
-      end: "bottom 20%",
-      scrub: true
-    }
-  });
-
-  // Projects section animation
-  gsap.from(".projects-section h2", {
-    duration: 1,
-    opacity: 0,
-    x: 50,
-    ease: "power2.out",
-    scrollTrigger: {
-      trigger: ".projects-section h2",
-      start: "top 80%",
-      end: "bottom 20%",
-      scrub: true
-    }
-  });
-
-  gsap.utils.toArray(".projects-section img, .projects-section p").forEach(el => {
-    gsap.from(el, {
-      duration: 1,
-      opacity: 0,
-      y: 50,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: el,
-        start: "top 85%",
-        end: "bottom 20%",
-        scrub: true
+    // Back to Top button visibility
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.style.display = 'block';
+      } else {
+        backToTopBtn.style.display = 'none';
       }
     });
-  });
 
-  // Back to top button show/hide
-  const backToTop = document.getElementById("backToTop");
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) {
-      backToTop.style.display = "block";
-    } else {
-      backToTop.style.display = "none";
-    }
-  });
-</script>
+    // Fade in sections on scroll
+    const sections = document.querySelectorAll('header, section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach(section => observer.observe(section));
+  </script>
+</body>
+</html>
