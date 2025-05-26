@@ -9,6 +9,22 @@
   <style>
     html {
       scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+      scrollbar-width: thin;
+      scrollbar-color: #1a73e8 #0e0e0e;
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #1a73e8;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #0e0e0e;
     }
 
     body {
@@ -29,11 +45,17 @@
       text-align: center;
       background-attachment: fixed;
       opacity: 0;
-      transition: opacity 1s ease-in-out;
+      transition: opacity 1s ease-in-out, filter 0.5s ease;
+      scroll-snap-align: start;
     }
 
     header.visible, section.visible {
       opacity: 1;
+      filter: blur(0);
+    }
+
+    header:not(.visible), section:not(.visible) {
+      filter: blur(4px);
     }
 
     h1 {
@@ -44,7 +66,7 @@
     p {
       font-size: 1.25rem;
       max-width: 600px;
-      margin: 0 auto 2rem; /* Added margin-bottom for spacing */
+      margin: 0 auto 2rem;
     }
 
     .profile-pic {
@@ -86,13 +108,12 @@
     .links a.contact:hover { background: #1a73e8; }
     .links a.cv:hover { background: #333; }
 
-    .soco-section {
+    .soco-section, .projects-section {
       background: #0e0e0e;
       color: #f0f0f0;
-      scroll-snap-align: start;
     }
 
-    .soco-section img {
+    .soco-section img, .projects-section img {
       max-width: 100%;
       max-height: 500px;
       object-fit: cover;
@@ -101,14 +122,18 @@
       margin: 2rem 0;
     }
 
-    .soco-section a {
+    .soco-section a, .projects-section a {
       color: #4fa3ff;
       font-weight: bold;
       text-decoration: underline;
     }
 
-    .soco-section a:hover {
+    .soco-section a:hover, .projects-section a:hover {
       color: #82cfff;
+    }
+
+    .projects-section {
+      background: #121212;
     }
 
     footer {
@@ -137,48 +162,44 @@
     #backToTop:hover {
       background: #0c57c2;
     }
-
-    /* Smooth scroll snap effect */
-    html, body {
-      scroll-snap-type: y mandatory;
-    }
-
-    section, header {
-      scroll-snap-align: start;
-    }
   </style>
 </head>
 <body>
-
   <header id="top">
     <h1>Kacper Meller</h1>
     <p>Test developer with a passion for elegant solutions and real-world impact.</p>
-    <img src="me.jpg" alt="Kacper Meller" class="profile-pic">
+    <img src="me.jpg" alt="Profile picture of Kacper Meller" class="profile-pic">
     <div class="links">
-      <a href="https://linkedin.com/in/kacpermeller" class="linkedin button" target="_blank">LinkedIn</a>
-      <a href="https://www.instagram.com/mellergram" class="instagram button" target="_blank">Instagram</a>
-      <a href="mailto:kacper.meller@gmail.com" class="contact button">Contact</a>
-      <a href="/CV_Kacper_Meller.pdf" class="cv button" target="_blank">Download CV</a>
+      <a href="https://linkedin.com/in/kacpermeller" class="linkedin button" target="_blank" aria-label="Visit my LinkedIn">LinkedIn</a>
+      <a href="https://www.instagram.com/mellergram" class="instagram button" target="_blank" aria-label="Visit my Instagram">Instagram</a>
+      <a href="mailto:kacper.meller@gmail.com" class="contact button" aria-label="Send me an email">Contact</a>
+      <a href="/CV_Kacper_Meller.pdf" class="cv button" target="_blank" aria-label="Download my CV">Download CV</a>
     </div>
   </header>
 
   <section class="soco-section" id="soco">
     <h2>Recent Presentation at SOCO</h2>
-    <img src="socopres.png" alt="Kacper presenting at SOCO seminar">
+    <img src="socopres.png" alt="Kacper presenting at the SOCO breakfast seminar">
     <p>
       I recently gave a talk at the SOCO breakfast seminar, where I shared insights on modern test strategies and automation in hardware-software integration. Check out the full presentation 
       <a href="https://www.soco.no/aktuelt/frokostseminar-mai2024" target="_blank">here</a>.
     </p>
   </section>
 
+  <section class="projects-section">
+    <h2>Projects I've Worked On</h2>
+    <p>I’ve contributed to testing and validating TOMRA’s advanced reverse vending systems, particularly:</p>
+    <p><strong><a href="https://www.tomra.com/reverse-vending/our-offering/reverse-vending-machines/tomra-r2" target="_blank">TOMRA R2</a></strong> – A fast and efficient multi-feed solution for high-volume return locations, where I focused on verifying multi-bottle detection, compactor behavior, and stuck bottle recovery strategies.</p>
+    <p><strong><a href="https://www.tomra.com/reverse-vending/our-offering/reverse-vending-machines/tomra-rollpac" target="_blank">TOMRA RollPac</a></strong> – I supported integration testing for new glass bottle flows and conveyor adaptations for compact return setups in low-to-medium volume locations.</p>
+  </section>
+
   <footer>
     &copy; 2025 Kacper Meller
   </footer>
 
-  <button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">Back to Top</button>
+  <button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" aria-label="Back to top">Back to Top</button>
 
   <script>
-    // ScrollReveal animations
     ScrollReveal().reveal('header', {
       duration: 1000,
       origin: 'top',
@@ -186,29 +207,21 @@
       easing: 'ease-in-out'
     });
 
-    ScrollReveal().reveal('.soco-section h2', {
+    ScrollReveal().reveal('.soco-section h2, .projects-section h2', {
       duration: 1000,
       origin: 'left',
       distance: '50px',
       delay: 100
     });
 
-    ScrollReveal().reveal('.soco-section img', {
+    ScrollReveal().reveal('.soco-section img, .projects-section p', {
       duration: 1000,
       origin: 'bottom',
       distance: '30px',
+      interval: 200,
       delay: 200
     });
 
-    ScrollReveal().reveal('.soco-section p', {
-      duration: 800,
-      origin: 'bottom',
-      distance: '20px',
-      interval: 150,
-      delay: 300
-    });
-
-    // Back to Top button visibility
     const backToTopBtn = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 300) {
@@ -218,7 +231,6 @@
       }
     });
 
-    // Fade in sections on scroll
     const sections = document.querySelectorAll('header, section');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
