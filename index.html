@@ -1,186 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hi, I’m Meller</title>
-    
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kacper Meller</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #000000, #0f2027, #203a43, #2c5364);
+      color: white;
+      overflow-x: hidden;
+    }
 
-    <!-- SEO and Social Sharing Metadata -->
-    <meta name="description" content="Meller's personal portfolio and contact page.">
-    <meta property="og:title" content="Hi, I’m Meller">
-    <meta property="og:description" content="Welcome to my portfolio! Let’s connect.">
-    <meta property="og:image" content="https://kaspermeller.github.io/me.jpg">
-    <meta property="og:url" content="https://kaspermeller.github.io">
-    <meta name="twitter:card" content="summary_large_image">
+    header, section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 4rem 2rem;
+      text-align: center;
+      background-attachment: fixed;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
 
-    <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    header.visible, section.visible {
+      opacity: 1;
+    }
 
-        /* Base Styles */
-        body {
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            color: white;
-            text-align: center;
-            padding: 1rem;
-        }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
 
-        header {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
+    p {
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
 
-        h1 {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            animation: fadeIn 1s ease-out;
-        }
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      z-index: 1000;
+    }
 
-        p {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-        }
+    nav .logo {
+      color: white;
+      font-weight: bold;
+    }
 
-        /* Profile Picture */
-        .profile-pic {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-bottom: 1rem;
-            border: 4px solid white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+    nav .toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
 
-        .profile-pic img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    nav .toggle span {
+      background: white;
+      height: 3px;
+      width: 25px;
+      margin: 3px 0;
+    }
 
-        /* Social Links */
-        .social-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-        }
+    nav .links {
+      display: flex;
+      gap: 1rem;
+    }
 
-        .social-links a {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            border-radius: 25px;
-            background: white;
-            color: #333;
-            font-size: 1rem;
-            font-weight: bold;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            width: fit-content;
-        }
+    nav .links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-        .social-links a.linkedin:hover {
-            background: #0073b1;
-            color: white;
-        }
+    @media (max-width: 768px) {
+      nav .links {
+        display: none;
+        flex-direction: column;
+        background: rgba(0,0,0,0.9);
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        padding: 1rem;
+        border-radius: 8px;
+      }
 
-        .social-links a.instagram:hover {
-            background: #E1306C;
-            color: white;
-        }
+      nav .links.active {
+        display: flex;
+      }
 
-        .social-links a.contact:hover {
-            background: #34A853;
-            color: white;
-        }
+      nav .toggle {
+        display: flex;
+      }
+    }
 
-        .social-links a.cv:hover {
-            background: #fbbc05;
-            color: white;
-        }
+    .links a.button {
+      margin: 0.5rem;
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 30px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
 
-        /* Footer */
-        footer {
-            margin-top: 2rem;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
-        }
+    .links a.linkedin:hover { background: #0a66c2; }
+    .links a.instagram:hover { background: #4267b2; }
+    .links a.contact:hover { background: #1a73e8; }
+    .links a.cv:hover { background: #333; }
 
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    .soco-section {
+      background: #0e0e0e;
+      color: #f0f0f0;
+    }
 
-        /* Responsive Styles */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2rem;
-            }
+    .soco-section img {
+      max-width: 100%;
+      max-height: 500px;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      margin: 2rem 0;
+    }
 
-            p {
-                font-size: 1rem;
-            }
+    .soco-section a {
+      color: #4fa3ff;
+      font-weight: bold;
+      text-decoration: underline;
+    }
 
-            .social-links a {
-                padding: 0.7rem 1.5rem;
-                font-size: 0.9rem;
-            }
+    .soco-section a:hover {
+      color: #82cfff;
+    }
 
-            .profile-pic {
-                width: 120px;
-                height: 120px;
-            }
-        }
-    </style>
+    footer {
+      background: #111;
+      color: #aaa;
+      padding: 1rem 0;
+      text-align: center;
+    }
+
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #1a73e8;
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      transition: background 0.3s ease;
+      display: none;
+    }
+
+    #backToTop:hover {
+      background: #0c57c2;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="profile-pic">
-            <img src="me.jpg" alt="Meller">
-        </div>
-        <h1>Hi, I’m Meller</h1>
-        <p>Welcome to my portfolio! Let’s connect.</p>
-    </header>
-    <div class="social-links">
-        <a href="https://www.linkedin.com/in/kacpermeller" class="linkedin" target="_blank" aria-label="LinkedIn">
-            LinkedIn
-        </a>
-        <a href="https://www.instagram.com/caspermeller" class="instagram" target="_blank" aria-label="Instagram">
-            Instagram
-        </a>
-        <a href="mailto:mellerkasper@gmail.com" class="contact" target="_blank" aria-label="Email">
-            Contact Me
-        </a>
-        <a href="RESUME%20KM.pdf" class="cv" download aria-label="Download CV">
-            Download CV
-        </a>
+
+  <nav>
+    <div class="logo">Kacper Meller</div>
+    <div class="toggle" onclick="document.querySelector('nav .links').classList.toggle('active')">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
-    <footer>
-        © 2024 Meller. All rights reserved.
-    </footer>
+    <div class="links">
+      <a href="#top">Home</a>
+      <a href="#soco">SOCO</a>
+      <a href="mailto:kacper.meller@gmail.com">Contact</a>
+    </div>
+  </nav>
+
+  <header id="top">
+    <h1>Kacper Meller</h1>
+    <p>Test developer with a passion for elegant solutions and real-world impact.</p>
+    <div class="links">
+      <a href="https://linkedin.com/in/kacpermeller" class="linkedin button" target="_blank">LinkedIn</a>
+      <a href="https://www.instagram.com/mellergram" class="instagram button" target="_blank">Instagram</a>
+      <a href="mailto:kacper.meller@gmail.com" class="contact button">Contact</a>
+      <a href="/CV_Kacper_Meller.pdf" class="cv button" target="_blank">Download CV</a>
+    </div>
+  </header>
+
+  <section class="soco-section" id="soco">
+    <h2>Recent Presentation at SOCO</h2>
+    <img src="soco-presentation.jpg" alt="Kacper presenting at SOCO seminar">
+    <p>
+      I recently gave a talk at the SOCO breakfast seminar, where I shared insights on modern test strategies and automation in hardware-software integration. Check out the full presentation 
+      <a href="https://www.soco.no/aktuelt/frokostseminar-mai2024" target="_blank">here</a>.
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 Kacper Meller
+  </footer>
+
+  <button id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">Back to Top</button>
+
+  <script>
+    // ScrollReveal animations
+    ScrollReveal().reveal('header', {
+      duration: 1000,
+      origin: 'top',
+      distance: '30px',
+      easing: 'ease-in-out'
+    });
+
+    ScrollReveal().reveal('.soco-section h2', {
+      duration: 1000,
+      origin: 'left',
+      distance: '50px',
+      delay: 100
+    });
+
+    ScrollReveal().reveal('.soco-section img', {
+      duration: 1000,
+      origin: 'bottom',
+      distance: '30px',
+      delay: 200
+    });
+
+    ScrollReveal().reveal('.soco-section p', {
+      duration: 800,
+      origin: 'bottom',
+      distance: '20px',
+      interval: 150,
+      delay: 300
+    });
+
+    // Back to Top button visibility
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.style.display = 'block';
+      } else {
+        backToTopBtn.style.display = 'none';
+      }
+    });
+
+    // Fade in sections on scroll
+    const sections = document.querySelectorAll('header, section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach(section => observer.observe(section));
+  </script>
 </body>
 </html>
