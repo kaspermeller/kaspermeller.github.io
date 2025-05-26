@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kacper Meller</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/scrollreveal"></script>
   <style>
     html {
@@ -13,7 +13,7 @@
 
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Roboto', sans-serif;
       background: linear-gradient(135deg, #000000, #0f2027, #203a43, #2c5364);
       color: white;
       overflow-x: hidden;
@@ -47,66 +47,26 @@
       margin: 0 auto;
     }
 
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      z-index: 1000;
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     }
 
-    nav .logo {
-      color: white;
-      font-weight: bold;
-    }
-
-    nav .toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-
-    nav .toggle span {
-      background: white;
-      height: 3px;
-      width: 25px;
-      margin: 3px 0;
-    }
-
-    nav .links {
+    .links {
       display: flex;
       gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
-    nav .links a {
+    .links a {
       color: white;
       text-decoration: none;
       font-weight: bold;
-    }
-
-    @media (max-width: 768px) {
-      nav .links {
-        display: none;
-        flex-direction: column;
-        background: rgba(0,0,0,0.9);
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        padding: 1rem;
-        border-radius: 8px;
-      }
-
-      nav .links.active {
-        display: flex;
-      }
-
-      nav .toggle {
-        display: flex;
-      }
     }
 
     .links a.button {
@@ -190,23 +150,10 @@
 </head>
 <body>
 
-  <nav>
-    <div class="logo">Kacper Meller</div>
-    <div class="toggle" onclick="document.querySelector('nav .links').classList.toggle('active')">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <div class="links">
-      <a href="#top">Home</a>
-      <a href="#soco">SOCO</a>
-      <a href="mailto:kacper.meller@gmail.com">Contact</a>
-    </div>
-  </nav>
-
   <header id="top">
     <h1>Kacper Meller</h1>
     <p>Test developer with a passion for elegant solutions and real-world impact.</p>
+    <img src="me.jpg" alt="Kacper Meller" class="profile-pic">
     <div class="links">
       <a href="https://linkedin.com/in/kacpermeller" class="linkedin button" target="_blank">LinkedIn</a>
       <a href="https://www.instagram.com/mellergram" class="instagram button" target="_blank">Instagram</a>
@@ -217,7 +164,7 @@
 
   <section class="soco-section" id="soco">
     <h2>Recent Presentation at SOCO</h2>
-    <img src="soco-presentation.jpg" alt="Kacper presenting at SOCO seminar">
+    <img src="socopres.png" alt="Kacper presenting at SOCO seminar">
     <p>
       I recently gave a talk at the SOCO breakfast seminar, where I shared insights on modern test strategies and automation in hardware-software integration. Check out the full presentation 
       <a href="https://www.soco.no/aktuelt/frokostseminar-mai2024" target="_blank">here</a>.
