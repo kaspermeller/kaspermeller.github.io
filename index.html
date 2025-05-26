@@ -129,6 +129,7 @@
     .soco-section {
       background: #0e0e0e;
       color: #f0f0f0;
+      scroll-snap-align: start;
     }
 
     .soco-section img {
@@ -175,6 +176,15 @@
 
     #backToTop:hover {
       background: #0c57c2;
+    }
+
+    /* Smooth scroll snap effect */
+    html, body {
+      scroll-snap-type: y mandatory;
+    }
+
+    section, header {
+      scroll-snap-align: start;
     }
   </style>
 </head>
